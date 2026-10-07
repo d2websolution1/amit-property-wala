@@ -44,11 +44,8 @@ export default function FloatingActions({ setActivePage, openInquiryModal, openR
         <style>{`
           @media (max-width: 768px) {
             .desktop-floating-actions {
-              bottom: 80px !important;
+              bottom: 24px !important;
               right: 16px !important;
-            }
-            .mobile-bottom-bar {
-              display: flex !important;
             }
           }
         `}</style>
@@ -221,95 +218,6 @@ export default function FloatingActions({ setActivePage, openInquiryModal, openR
             <MessageSquare size={28} />
           </button>
         </div>
-      </div>
-
-      {/* Mobile Sticky Bottom Action Bar (App-like experience) */}
-      <div 
-        className="mobile-bottom-bar"
-        style={{
-          display: 'none',
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          background: '#FFFFFF',
-          borderTop: '1px solid #CBD5E1',
-          zIndex: 998,
-          boxShadow: '0 -4px 15px rgba(0,0,0,0.08)',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          padding: '6px 8px'
-        }}
-      >
-        {/* 1. Call Now */}
-        <a
-          href={`tel:+91${CONTACT_INFO.phone}`}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '6px 4px',
-            color: '#0284C7',
-            textDecoration: 'none'
-          }}
-        >
-          <Phone size={20} />
-          <span style={{ fontSize: '0.72rem', fontWeight: 700, marginTop: '2px' }}>Call Now</span>
-        </a>
-
-        {/* 2. WhatsApp */}
-        <a
-          href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Amit ji, I want to inquire about plots in Patna.")}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '6px 4px',
-            color: '#25D366',
-            textDecoration: 'none'
-          }}
-        >
-          <MessageSquare size={20} />
-          <span style={{ fontSize: '0.72rem', fontWeight: 700, marginTop: '2px' }}>WhatsApp</span>
-        </a>
-
-        {/* 3. Gallery */}
-        <button
-          onClick={() => {
-            setActivePage('gallery');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '6px 4px',
-            color: '#0B192C'
-          }}
-        >
-          <Image size={20} color="#D48D00" />
-          <span style={{ fontSize: '0.72rem', fontWeight: 700, marginTop: '2px' }}>Gallery</span>
-        </button>
-
-        {/* 4. Book Visit */}
-        <button
-          onClick={() => openInquiryModal()}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '6px 4px',
-            color: '#C68A02'
-          }}
-        >
-          <Car size={20} />
-          <span style={{ fontSize: '0.72rem', fontWeight: 800, marginTop: '2px' }}>Book Visit</span>
-        </button>
       </div>
     </>
   );

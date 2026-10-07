@@ -296,6 +296,29 @@ export default function Navbar({ activePage, setActivePage, openInquiryModal }) 
           padding: '16px 20px',
           boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
         }}>
+          {/* Advisor Profile Badge inside Mobile Drawer */}
+          <div style={{
+            background: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)',
+            border: '1px solid #FDE68A',
+            borderRadius: '12px',
+            padding: '12px 14px',
+            marginBottom: '14px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#92400E', fontWeight: 800, fontSize: '0.94rem' }}>
+              <Award size={16} color="#D97706" />
+              <span>Amit Kumar Chaurasiya</span>
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#B45309', marginTop: '2px', fontWeight: 600 }}>
+              Founder & Property Advisor • Delcon Partner
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#475569', marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <MapPin size={13} color="#D97706" /> Dak Bangla Patna One Plaza, 5th Floor - 501
+            </div>
+            <div style={{ fontSize: '0.78rem', color: '#475569', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Mail size={13} color="#D97706" /> {CONTACT_INFO.email}
+            </div>
+          </div>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {navLinks.map((link) => {
               const Icon = link.icon;

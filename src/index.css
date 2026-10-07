@@ -107,13 +107,13 @@ input, select, textarea {
 
 @media (max-width: 991px) {
   :root {
-    --site-header-height: 180px;
+    --site-header-height: 120px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   :root {
-    --site-header-height: 225px;
+    --site-header-height: 96px;
   }
 }
 
@@ -129,21 +129,27 @@ input, select, textarea {
 }
 
 @media (max-width: 768px) {
-  .hero-slider-wrapper {
-    min-height: 640px !important;
+  /* Clean mobile header: remove cluttered multi-line contact text above navbar */
+  .top-utility-bar {
+    display: none !important;
   }
+
+  /* Sleek luxury moving ticker on mobile */
+  .ticker-wrap {
+    padding: 5px 0 !important;
+    font-size: 0.75rem !important;
+  }
+
+  .hero-slider-wrapper {
+    min-height: 580px !important;
+  }
+
   .hero-slider-content-container {
-    padding-top: calc(var(--site-header-height, 225px) + 24px) !important;
+    padding-top: calc(var(--site-header-height, 96px) + 24px) !important;
     padding-left: 16px !important;
     padding-right: 16px !important;
     padding-bottom: 40px !important;
     min-height: auto !important;
-  }
-  .top-utility-bar {
-    padding: 5px 0 !important;
-  }
-  .top-utility-bar .container {
-    gap: 4px !important;
   }
 }
 
