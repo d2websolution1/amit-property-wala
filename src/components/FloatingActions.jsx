@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Phone, X, BookOpen, Car, ChevronRight, Sparkles } from 'lucide-react';
+import { MessageSquare, Phone, X, Image, Car, ChevronRight, Sparkles } from 'lucide-react';
 import { CONTACT_INFO } from '../data/projectsData';
 
 export default function FloatingActions({ setActivePage, openInquiryModal, openRateChartModal }) {
@@ -276,10 +276,10 @@ export default function FloatingActions({ setActivePage, openInquiryModal, openR
           <span style={{ fontSize: '0.72rem', fontWeight: 700, marginTop: '2px' }}>WhatsApp</span>
         </a>
 
-        {/* 3. Blog */}
+        {/* 3. Gallery */}
         <button
           onClick={() => {
-            setActivePage('blog');
+            setActivePage('gallery');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           style={{
@@ -291,8 +291,8 @@ export default function FloatingActions({ setActivePage, openInquiryModal, openR
             color: '#0B192C'
           }}
         >
-          <BookOpen size={20} color="#D48D00" />
-          <span style={{ fontSize: '0.72rem', fontWeight: 700, marginTop: '2px' }}>Blog</span>
+          <Image size={20} color="#D48D00" />
+          <span style={{ fontSize: '0.72rem', fontWeight: 700, marginTop: '2px' }}>Gallery</span>
         </button>
 
         {/* 4. Book Visit */}

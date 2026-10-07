@@ -7,10 +7,11 @@ import RateChartModal from './components/RateChartModal';
 import VideoPlayerModal from './components/VideoPlayerModal';
 
 import HomePage from './pages/HomePage';
-import ProjectsPage from './pages/ProjectsPage';
+import PlotsPage from './pages/PlotsPage';
+import GalleryPage from './pages/GalleryPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
-import BlogPage from './pages/BlogPage';
+import CalculatorPage from './pages/CalculatorPage';
 
 export default function App() {
   const [activePage, setActivePage] = useState('home');
@@ -59,8 +60,8 @@ export default function App() {
         openInquiryModal={openInquiryModal}
       />
 
-      {/* Spacer so fixed navbar doesn't overlap content */}
-      <div id="navbar-spacer" style={{ height: '0px' }} />
+      {/* Spacer so fixed navbar doesn't overlap content on inner pages */}
+      <div id="navbar-spacer" style={{ height: activePage === 'home' ? '0px' : '128px' }} />
 
       {/* 2. Main Page Content View */}
       <main style={{ flex: 1, paddingTop: '0' }}>
@@ -73,11 +74,19 @@ export default function App() {
           />
         )}
 
-        {activePage === 'projects' && (
-          <ProjectsPage
+        {activePage === 'plots' && (
+          <PlotsPage
             openInquiryModal={openInquiryModal}
             openRateChartModal={openRateChartModal}
             setActivePage={setActivePage}
+          />
+        )}
+
+        {activePage === 'gallery' && (
+          <GalleryPage
+            openInquiryModal={openInquiryModal}
+            setActivePage={setActivePage}
+            setSelectedVideo={handleVideoSelect}
           />
         )}
 
@@ -92,10 +101,9 @@ export default function App() {
           <ContactPage />
         )}
 
-        {activePage === 'blog' && (
-          <BlogPage
+        {activePage === 'calculator' && (
+          <CalculatorPage
             openInquiryModal={openInquiryModal}
-            openRateChartModal={openRateChartModal}
             setActivePage={setActivePage}
           />
         )}

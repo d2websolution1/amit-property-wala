@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { PROJECTS_DATA, COMMERCIAL_RATE, CONTACT_INFO } from '../data/projectsData';
 
-export default function CalculatorPage({ openInquiryModal }) {
+export default function CalculatorPage({ openInquiryModal, setActivePage }) {
   const [selectedProjectId, setSelectedProjectId] = useState('1'); // 'commercial' or project id
   const [unitType, setUnitType] = useState('sqft'); // 'sqft' or 'katha' (1 katha = 1361 sqft in Patna/Bihar)
   const [areaInput, setAreaInput] = useState(1200);
@@ -76,8 +76,22 @@ export default function CalculatorPage({ openInquiryModal }) {
         boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
       }}>
         <div className="container">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(241,168,10,0.18)', border: '1px solid rgba(241,168,10,0.4)', padding: '4px 14px', borderRadius: '50px', color: '#B45309', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '10px' }}>
-            <Calculator size={15} /> Instant Investment Planner
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '10px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(241,168,10,0.18)', border: '1px solid rgba(241,168,10,0.4)', padding: '4px 14px', borderRadius: '50px', color: '#B45309', fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase' }}>
+              <Calculator size={15} /> Instant Investment Planner
+            </div>
+            {setActivePage && (
+              <button
+                onClick={() => { setActivePage('plots'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '6px',
+                  background: '#0F2848', color: '#FFFFFF', padding: '8px 16px',
+                  borderRadius: '8px', fontSize: '0.85rem', fontWeight: 700, border: 'none', cursor: 'pointer'
+                }}
+              >
+                ← Back to Available Plots
+              </button>
+            )}
           </div>
           <h1 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', color: '#0F2848', fontWeight: 900 }}>
             Plot Price & EMI Calculator

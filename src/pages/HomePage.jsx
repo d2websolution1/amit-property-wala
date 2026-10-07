@@ -12,24 +12,21 @@ import {
   Play, 
   FileText, 
   TrendingUp, 
-  Car, 
+  Car,
   Users, 
   Award,
   Clock,
   Sparkles,
   Percent,
   Compass,
-  Star,
-  BookOpen
+  Star
 } from 'lucide-react';
 import { PROJECTS_DATA, COMMERCIAL_RATE, CONTACT_INFO } from '../data/projectsData';
 import { VIDEOS_DATA } from '../data/videosData';
-import { BLOGS_DATA } from '../data/blogsData';
 
 export default function HomePage({ setActivePage, openInquiryModal, openRateChartModal, setSelectedVideo }) {
   const featuredProjects = PROJECTS_DATA.filter(p => p.featured).slice(0, 6);
-  const homeVideos = VIDEOS_DATA.slice(0, 3);
-  const homeBlogs = BLOGS_DATA.slice(0, 3);
+  const homeVideos = VIDEOS_DATA.slice(0, 4);
 
   return (
     <div style={{ background: '#F8FAFC' }}>
@@ -45,7 +42,7 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
         <div className="container">
           <div className="stagger-children" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '20px'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
@@ -75,16 +72,6 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
               <div>
                 <h4 style={{ fontSize: '0.96rem', fontWeight: 800, color: '#0F172A' }}>11 to 18 Months EMI</h4>
                 <p style={{ fontSize: '0.8rem', color: '#64748B' }}>Easy Monthly Installments</p>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#FDF2F8', color: '#DB2777', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Car size={26} />
-              </div>
-              <div>
-                <h4 style={{ fontSize: '0.96rem', fontWeight: 800, color: '#0F172A' }}>Free Site Visit Cab</h4>
-                <p style={{ fontSize: '0.8rem', color: '#64748B' }}>Free AC Pickup Across Patna</p>
               </div>
             </div>
           </div>
@@ -155,7 +142,7 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
 
             <button
               onClick={() => {
-                setActivePage('projects');
+                setActivePage('plots');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="btn-outline-navy"
@@ -323,12 +310,12 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
 
             <button
               onClick={() => {
-                setActivePage('videos');
+                setActivePage('gallery');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="btn-primary-gold"
             >
-              <span>Explore All Videos</span>
+              <span>Explore All Videos & Photos</span>
               <ArrowRight size={16} />
             </button>
           </div>
@@ -336,7 +323,7 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
           {/* Video Cards Grid - Crisp White Luxury Cards */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '24px'
           }}>
             {homeVideos.map((video) => (
@@ -445,123 +432,6 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
         </div>
       </section>
 
-      {/* 5B. REAL ESTATE BLOG & GUIDES (NEW FEATURE) */}
-      <section style={{ padding: '64px 0', background: '#FFFFFF' }}>
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px', marginBottom: '36px' }}>
-            <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(241, 168, 10, 0.15)', color: '#B45309', border: '1px solid rgba(241, 168, 10, 0.35)', padding: '4px 12px', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '8px' }}>
-                <BookOpen size={14} /> Knowledge & Legal Insights
-              </div>
-              <h2 style={{ fontSize: 'clamp(1.6rem, 3.2vw, 2.4rem)', color: '#0F2848', fontWeight: 900 }}>
-                Patna Real Estate Investment & Registry Guides
-              </h2>
-              <p style={{ color: '#64748B', fontSize: '0.96rem', marginTop: '6px' }}>
-                Clear explanations on land registry laws, Bihta elevated corridor growth, and Delcon EMI installment advantages.
-              </p>
-            </div>
-
-            <button
-              onClick={() => {
-                setActivePage('blog');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="btn-outline-navy"
-            >
-              <span>View All Guides & Articles</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px'
-          }}>
-            {homeBlogs.map((post) => (
-              <div
-                key={post.id}
-                onClick={() => {
-                  setActivePage('blog');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                style={{
-                  background: '#FFFFFF',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  border: '1px solid #E2E8F0',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.borderColor = '#F1A80A';
-                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(15, 40, 72, 0.12)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = '#E2E8F0';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)';
-                }}
-              >
-                <div style={{ height: '180px', position: 'relative' }}>
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(15, 40, 72, 0.85)',
-                    color: '#F1A80A',
-                    fontSize: '0.74rem',
-                    fontWeight: 800,
-                    padding: '3px 10px',
-                    borderRadius: '50px',
-                    textTransform: 'uppercase'
-                  }}>
-                    {post.badge}
-                  </div>
-                </div>
-
-                <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', marginBottom: '6px' }}>
-                      {post.date} • {post.readTime}
-                    </div>
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0F2848', lineHeight: 1.35, marginBottom: '6px' }}>
-                      {post.title}
-                    </h3>
-                    <p style={{ fontSize: '0.86rem', color: '#64748B', lineHeight: 1.5, marginBottom: '14px' }}>
-                      {post.excerpt.substring(0, 110)}...
-                    </p>
-                  </div>
-
-                  <div style={{
-                    paddingTop: '12px',
-                    borderTop: '1px solid #F1F5F9',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    color: '#D97706',
-                    fontSize: '0.86rem',
-                    fontWeight: 700
-                  }}>
-                    <span>Read Full Guide</span>
-                    <ArrowRight size={15} />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 6. Quick Rate Chart Teaser with Scanned Chart CTA */}
       <section style={{ padding: '60px 0', background: '#FFFFFF' }}>
         <div className="container">
@@ -648,7 +518,7 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
             <div style={{ marginTop: '16px', textAlign: 'center' }}>
               <button
                 onClick={() => {
-                  setActivePage('projects');
+                  setActivePage('plots');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 style={{

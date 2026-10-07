@@ -9,8 +9,8 @@ import {
   Building2,
   Info,
   Award,
-  FileSpreadsheet,
-  BookOpen
+  LayoutGrid,
+  Image
 } from 'lucide-react';
 import { CONTACT_INFO } from '../data/projectsData';
 
@@ -41,8 +41,8 @@ export default function Navbar({ activePage, setActivePage, openInquiryModal }) 
 
   const navLinks = [
     { id: 'home', label: 'Home', icon: Building2 },
-    { id: 'projects', label: 'Projects & Rates', icon: FileSpreadsheet },
-    { id: 'blog', label: 'Blog & Guides', icon: BookOpen, badge: 'New' },
+    { id: 'plots', label: 'Plots', icon: LayoutGrid },
+    { id: 'gallery', label: 'Gallery', icon: Image, badge: 'New' },
     { id: 'about', label: 'About Us', icon: Info },
     { id: 'contact', label: 'Contact', icon: MapPin }
   ];

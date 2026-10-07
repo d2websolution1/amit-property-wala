@@ -10,8 +10,7 @@ import {
   TrendingUp,
   Building,
   Check,
-  FileSpreadsheet,
-  Car
+  FileSpreadsheet
 } from 'lucide-react';
 import { CONTACT_INFO } from '../data/projectsData';
 
@@ -24,7 +23,7 @@ const SLIDES = [
     subtitle: 'Prime Residential Townships in Patna, Bihta Ring Road & Expressway with Easy 11 to 18 Months EMI facility.',
     highlight: 'Plots starting from ₹1,150 / sq.ft | Zero Brokerage',
     ctaPrimary: 'View Rate Chart',
-    ctaAction: 'projects'
+    ctaAction: 'plots'
   },
   {
     id: 2,
@@ -34,7 +33,7 @@ const SLIDES = [
     subtitle: 'Super prime commercial land for Shopping Centers, Showrooms, Hospitals & Clinics @ ₹3,299/sq.ft (One-Time) & ₹3,599/sq.ft (EMI).',
     highlight: 'Immediate High Rental Yield & Capital Appreciation',
     ctaPrimary: 'Commercial Deals',
-    ctaAction: 'projects'
+    ctaAction: 'plots'
   },
   {
     id: 3,
@@ -44,7 +43,7 @@ const SLIDES = [
     subtitle: 'Surround yourself with nature, lush greenery, and mountain views at Giriyak starting @ only ₹799/sq.ft and Hills Court Ranchi.',
     highlight: 'Special 11 to 18 Months Easy Installment Plan',
     ctaPrimary: 'Explore Farmhouses',
-    ctaAction: 'projects'
+    ctaAction: 'plots'
   }
 ];
 
@@ -65,12 +64,12 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setActivePage('projects');
+    setActivePage('plots');
     window.scrollTo({ top: 600, behavior: 'smooth' });
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', overflow: 'hidden', minHeight: '620px', background: '#0B192C' }}>
+    <div style={{ position: 'relative', width: '100%', overflow: 'hidden', minHeight: '680px', background: '#0B192C' }}>
       {/* Slides Carousel */}
       {SLIDES.map((slide, index) => {
         const isActive = index === currentSlide;
@@ -126,7 +125,7 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
       </div>
 
       {/* Main Slide Content Over Carousel */}
-      <div className="container" style={{ position: 'relative', zIndex: 10, minHeight: '620px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px 24px' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 10, minHeight: '680px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '160px 24px 60px' }}>
         <div style={{ maxWidth: '820px' }}>
           {/* Trust Badge */}
           <div style={{
@@ -195,7 +194,7 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
             <button
               onClick={() => {
-                setActivePage('projects');
+                setActivePage('plots');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="btn-primary-gold"
@@ -203,15 +202,6 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
             >
               <span>View All 19 Projects Rate Chart</span>
               <ArrowRight size={18} />
-            </button>
-
-            <button
-              onClick={() => openInquiryModal()}
-              className="btn-outline-white"
-              style={{ fontSize: '1rem', padding: '13px 26px' }}
-            >
-              <Car size={18} color="#F1A80A" />
-              <span>Book Free Site Visit (Cab Provided)</span>
             </button>
 
             <a

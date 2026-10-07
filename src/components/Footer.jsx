@@ -17,8 +17,9 @@ import { CONTACT_INFO, COMMERCIAL_RATE } from '../data/projectsData';
 export default function Footer({ setActivePage, openInquiryModal, openRateChartModal }) {
   const quickLinks = [
     { id: 'home', label: 'Home Page' },
-    { id: 'projects', label: 'Rate Chart & All Projects' },
-    { id: 'blog', label: 'Real Estate Blog & Guides' },
+    { id: 'plots', label: 'Available Plots & Rate Chart' },
+    { id: 'calculator', label: 'Plot Price & EMI Calculator' },
+    { id: 'gallery', label: 'Photo Gallery' },
     { id: 'about', label: 'About Amit Kumar Chaurasiya' },
     { id: 'contact', label: 'Book Free Site Visit' }
   ];
