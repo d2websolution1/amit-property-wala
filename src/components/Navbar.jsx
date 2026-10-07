@@ -18,6 +18,40 @@ export default function Navbar({ activePage, setActivePage, openInquiryModal }) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const baseNavRef = useRef(null);
+
+  // Measure and set exact header height to prevent content overlap on all screens
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (baseNavRef.current) {
+        const height = baseNavRef.current.offsetHeight;
+        if (height > 50) {
+          document.documentElement.style.setProperty('--site-header-height', `${height}px`);
+        }
+      }
+    };
+
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    window.addEventListener('orientationchange', updateHeaderHeight);
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined' && baseNavRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updateHeaderHeight();
+      });
+      resizeObserver.observe(baseNavRef.current);
+    }
+
+    const timer = setTimeout(updateHeaderHeight, 150);
+
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+      window.removeEventListener('orientationchange', updateHeaderHeight);
+      if (resizeObserver) resizeObserver.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,30 +102,31 @@ export default function Navbar({ activePage, setActivePage, openInquiryModal }) 
         transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
       }}
     >
-      {/* Top Ticker Notification - Light Gold Luxury Marquee */}
-      <div className="ticker-wrap" style={{ background: 'linear-gradient(90deg, #FEF3C7 0%, #FFFBEB 50%, #FEF3C7 100%)', color: '#92400E', borderBottom: '1px solid #FDE68A', padding: '6px 0', fontSize: '0.82rem', fontWeight: 700 }}>
-        <div className="ticker-content">
-          <span>
-            ✨ <strong>DELCON HOMES PVT. LTD. AUTHORIZED CHANNEL PARTNER</strong> ✨ |
-            📍 Prime Office: Dak Bangla Patna One Plaza, 5th Floor, Suite 501, Patna 800001 |
-            🔥 New Commercial Plots Across All Projects @ ₹3,299/sq.ft (One-Time) & ₹3,599/sq.ft (EMI) |
-            🚗 Free Site Visit with AC Pick & Drop anywhere in Patna |
-            📞 Call Consultant Amit Kumar Chaurasiya: +91 76779 71641 |
-            📜 100% Legal Title, Immediate Spot Registry & Possession
-          </span>
-          <span style={{ marginLeft: '40px' }}>
-            ✨ <strong>DELCON HOMES PVT. LTD. AUTHORIZED CHANNEL PARTNER</strong> ✨ |
-            📍 Prime Office: Dak Bangla Patna One Plaza, 5th Floor, Suite 501, Patna 800001 |
-            🔥 New Commercial Plots Across All Projects @ ₹3,299/sq.ft (One-Time) & ₹3,599/sq.ft (EMI) |
-            🚗 Free Site Visit with AC Pick & Drop anywhere in Patna |
-            📞 Call Consultant Amit Kumar Chaurasiya: +91 76779 71641 |
-            📜 100% Legal Title, Immediate Spot Registry & Possession
-          </span>
+      <div ref={baseNavRef} className="base-navbar-container">
+        {/* Top Ticker Notification - Light Gold Luxury Marquee */}
+        <div className="ticker-wrap" style={{ background: 'linear-gradient(90deg, #FEF3C7 0%, #FFFBEB 50%, #FEF3C7 100%)', color: '#92400E', borderBottom: '1px solid #FDE68A', padding: '6px 0', fontSize: '0.82rem', fontWeight: 700 }}>
+          <div className="ticker-content">
+            <span>
+              ✨ <strong>DELCON HOMES PVT. LTD. AUTHORIZED CHANNEL PARTNER</strong> ✨ |
+              📍 Prime Office: Dak Bangla Patna One Plaza, 5th Floor, Suite 501, Patna 800001 |
+              🔥 New Commercial Plots Across All Projects @ ₹3,299/sq.ft (One-Time) & ₹3,599/sq.ft (EMI) |
+              🚗 Free Site Visit with AC Pick & Drop anywhere in Patna |
+              📞 Call Consultant Amit Kumar Chaurasiya: +91 76779 71641 |
+              📜 100% Legal Title, Immediate Spot Registry & Possession
+            </span>
+            <span style={{ marginLeft: '40px' }}>
+              ✨ <strong>DELCON HOMES PVT. LTD. AUTHORIZED CHANNEL PARTNER</strong> ✨ |
+              📍 Prime Office: Dak Bangla Patna One Plaza, 5th Floor, Suite 501, Patna 800001 |
+              🔥 New Commercial Plots Across All Projects @ ₹3,299/sq.ft (One-Time) & ₹3,599/sq.ft (EMI) |
+              🚗 Free Site Visit with AC Pick & Drop anywhere in Patna |
+              📞 Call Consultant Amit Kumar Chaurasiya: +91 76779 71641 |
+              📜 100% Legal Title, Immediate Spot Registry & Possession
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* Top Utility Contact Bar - Crisp Light Style */}
-      <div style={{ background: '#F8FAFC', color: '#475569', fontSize: '0.82rem', padding: '7px 0', borderBottom: '1px solid #E2E8F0' }}>
+        {/* Top Utility Contact Bar - Crisp Light Style */}
+        <div className="top-utility-bar" style={{ background: '#F8FAFC', color: '#475569', fontSize: '0.82rem', padding: '7px 0', borderBottom: '1px solid #E2E8F0' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#0F2848' }}>
@@ -250,6 +285,7 @@ export default function Navbar({ activePage, setActivePage, openInquiryModal }) 
         >
           {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
+      </div>
       </div>
 
       {/* Mobile Drawer Menu */}

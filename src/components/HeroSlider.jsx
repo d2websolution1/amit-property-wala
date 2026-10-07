@@ -69,7 +69,7 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', overflow: 'hidden', minHeight: '680px', background: '#0B192C' }}>
+    <div className="hero-slider-wrapper" style={{ position: 'relative', width: '100%', overflow: 'hidden', minHeight: '680px', background: '#0B192C' }}>
       {/* Slides Carousel */}
       {SLIDES.map((slide, index) => {
         const isActive = index === currentSlide;
@@ -125,7 +125,21 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
       </div>
 
       {/* Main Slide Content Over Carousel */}
-      <div className="container" style={{ position: 'relative', zIndex: 10, minHeight: '680px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '160px 24px 60px' }}>
+      <div 
+        className="hero-slider-content-container container" 
+        style={{ 
+          position: 'relative', 
+          zIndex: 10, 
+          minHeight: '680px', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          paddingTop: 'calc(var(--site-header-height, 128px) + 36px)',
+          paddingBottom: '60px',
+          paddingLeft: '24px',
+          paddingRight: '24px'
+        }}
+      >
         <div style={{ maxWidth: '820px' }}>
           {/* Trust Badge */}
           <div style={{

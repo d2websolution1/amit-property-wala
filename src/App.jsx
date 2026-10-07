@@ -61,7 +61,9 @@ export default function App() {
       />
 
       {/* Spacer so fixed navbar doesn't overlap content on inner pages */}
-      <div id="navbar-spacer" style={{ height: activePage === 'home' ? '0px' : '128px' }} />
+      {activePage !== 'home' && (
+        <div id="navbar-spacer" className="navbar-spacer" style={{ height: 'var(--site-header-height, 128px)' }} />
+      )}
 
       {/* 2. Main Page Content View */}
       <main style={{ flex: 1, paddingTop: '0' }}>
