@@ -184,7 +184,7 @@ export default function AboutPage({ setActivePage, openInquiryModal }) {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem', color: '#334155' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle size={16} color="#10B981" /> <strong>All Bihar Projects:</strong> Patna, Bihta, Giriyak, Nalanda & Ranchi
+                <CheckCircle size={16} color="#10B981" /> <strong>All Bihar Projects:</strong> Patna, Bihta, Rajgir, Nalanda & Ranchi
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle size={16} color="#10B981" /> <strong>Commercial Land:</strong> 60ft & 80ft Road @ ₹3,299 / ₹3,599 EMI

@@ -31,7 +31,7 @@ export default function Footer({ setActivePage, openInquiryModal, openRateChartM
     "North Park & North Park Ext. (₹2000-₹3000)",
     "Pragati Nagar Patna (₹2200/sqft)",
     "Hills Court Ranchi (₹1499/sqft)",
-    "Giriyak Farmhouse Plots (₹799/sqft)",
+    "Rajgir Farmhouse Plots (₹799/sqft)",
     "Commercial Plots Highway Frontage (₹3299/sqft)"
   ];
 

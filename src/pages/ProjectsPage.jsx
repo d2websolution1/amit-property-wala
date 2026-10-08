@@ -14,25 +14,32 @@ import {
   TrendingUp,
   Table,
   LayoutGrid,
-  ShieldCheck
+  ShieldCheck,
+  Play,
+  Compass,
+  Navigation
 } from 'lucide-react';
 import { PROJECTS_DATA, COMMERCIAL_RATE, CONTACT_INFO } from '../data/projectsData';
+import HillsCourtModal from '../components/HillsCourtModal';
 
-export default function ProjectsPage({ openInquiryModal, openRateChartModal, setActivePage }) {
+export default function ProjectsPage({ openInquiryModal, openRateChartModal, setActivePage, setSelectedVideo }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'table'
+  const [hillsCourtModalOpen, setHillsCourtModalOpen] = useState(false);
 
   const categories = [
     { id: 'all', label: 'All 19 Projects' },
     { id: 'patna', label: 'Patna Corridor' },
     { id: 'ranchi', label: 'Ranchi Hills' },
-    { id: 'giriyak', label: 'Giriyak & Nalanda' },
+    { id: 'rajgir', label: 'Rajgir & Nalanda' },
     { id: 'scenic', label: 'Valley & Eco Plots' }
   ];
 
   const filteredProjects = PROJECTS_DATA.filter((project) => {
-    const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
+    const matchesCategory = selectedCategory === 'all' || 
+      project.category === selectedCategory || 
+      (selectedCategory === 'rajgir' && (project.category === 'rajgir' || project.category === 'giriyak'));
     const matchesSearch = 
       project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -293,6 +300,97 @@ export default function ProjectsPage({ openInquiryModal, openRateChartModal, set
                     {project.description}
                   </p>
 
+                  {/* Master Plan Button for Hills Court */}
+                  {project.hasMasterPlan && (
+                    <button
+                      onClick={() => setHillsCourtModalOpen(true)}
+                      style={{
+                        width: '100%',
+                        marginBottom: '12px',
+                        padding: '10px 14px',
+                        borderRadius: '10px',
+                        background: 'linear-gradient(135deg, #0F2848 0%, #1A365D 100%)',
+                        color: '#F1A80A',
+                        border: '1.5px solid #F1A80A',
+                        fontWeight: 800,
+                        fontSize: '0.84rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 12px rgba(15, 40, 72, 0.15)'
+                      }}
+                    >
+                      <Compass size={16} /> 🗺️ View Layout Map (246 Plots) & 11 Locations
+                    </button>
+                  )}
+
+                  {/* Video Walkthrough Button */}
+                  {project.hasVideo && (
+                    <button
+                      onClick={() => {
+                        if (setSelectedVideo) {
+                          setSelectedVideo({
+                            id: `vid-${project.id}`,
+                            title: project.videoTitle || `${project.name} On-Site Tour`,
+                            project: project.name,
+                            location: project.location,
+                            videoSrc: project.videoSrc,
+                            videoEmbedUrl: project.videoSrc,
+                            thumbnail: project.image,
+                            duration: "Site Video",
+                            views: "Verified Footage",
+                            description: project.description
+                          });
+                        }
+                      }}
+                      style={{
+                        width: '100%',
+                        marginBottom: '12px',
+                        padding: '10px 14px',
+                        borderRadius: '10px',
+                        background: 'linear-gradient(135deg, #DC2626 0%, #991B1B 100%)',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        fontWeight: 800,
+                        fontSize: '0.84rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 12px rgba(220, 38, 38, 0.25)'
+                      }}
+                    >
+                      <Play size={16} fill="#FFFFFF" /> ▶️ Watch On-Site Reality Video Tour
+                    </button>
+                  )}
+
+                  {/* Nearby Key Locations Pills */}
+                  {project.nearbyLandmarks && (
+                    <div style={{ marginBottom: '14px', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '10px', padding: '10px 12px' }}>
+                      <div style={{ fontSize: '0.74rem', color: '#B45309', fontWeight: 800, textTransform: 'uppercase', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <MapPin size={12} color="#F1A80A" /> Nearest Key Locations:
+                      </div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+                        {project.nearbyLandmarks.slice(0, 5).map((nl, idx) => (
+                          <span key={idx} style={{ background: '#FFFFFF', border: '1px solid #CBD5E1', color: '#1E293B', fontSize: '0.72rem', padding: '3px 8px', borderRadius: '4px', fontWeight: 600 }}>
+                            {nl.name}: <strong style={{ color: '#D97706' }}>{nl.distance}</strong>
+                          </span>
+                        ))}
+                        {project.nearbyLandmarks.length > 5 && (
+                          <button 
+                            onClick={() => setHillsCourtModalOpen(true)}
+                            style={{ background: '#FEF3C7', border: '1px solid #FCD34D', color: '#92400E', fontSize: '0.72rem', fontWeight: 800, cursor: 'pointer', padding: '3px 8px', borderRadius: '4px' }}
+                          >
+                            +{project.nearbyLandmarks.length - 5} More Locations...
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Rate Specs Box */}
                   <div style={{
                     background: '#F8FAFC',
@@ -427,7 +525,12 @@ export default function ProjectsPage({ openInquiryModal, openRateChartModal, set
             </div>
           </div>
         )}
-      </div>
+      {/* Hills Court Ranchi Master Plan & 11 Locations Modal */}
+      <HillsCourtModal
+        isOpen={hillsCourtModalOpen}
+        onClose={() => setHillsCourtModalOpen(false)}
+        openInquiryModal={openInquiryModal}
+      />
     </div>
   );
 }

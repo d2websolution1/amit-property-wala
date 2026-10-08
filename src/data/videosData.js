@@ -48,8 +48,8 @@ export const VIDEOS_DATA = [
   {
     id: "vid-4",
     title: "Farmhouse Plots, Valley Landscape & Scenic Site Overview",
-    project: "GIRIYAK & HILLS COURT RANCHI",
-    location: "Giriyak / Nalanda Foothills",
+    project: "RAJGIR & HILLS COURT RANCHI",
+    location: "Rajgir / Nalanda Foothills",
     category: "farmhouse",
     duration: "Site Video 4",
     views: "Scenic Land Survey",
@@ -57,8 +57,23 @@ export const VIDEOS_DATA = [
     thumbnail: "/images/farmhouse_hero.jpg",
     videoSrc: "/videos/amit_video_4.mp4",
     videoEmbedUrl: "/videos/amit_video_4.mp4",
-    description: "Take a tour of the scenic hill view farmhouse plots at Giriyak and Hills Court Ranchi. Watch actual site ground development and lush green surroundings.",
+    description: "Take a tour of the scenic hill view farmhouse plots at Rajgir and Hills Court Ranchi. Watch actual site ground development and lush green surroundings.",
     highlights: ["Super Budget @ ₹799/sqft", "Surrounded by Scenic Hills", "Clean Sweet Ground Water"]
+  },
+  {
+    id: "vid-awadh",
+    title: "Awadh Ashiyana Muzaffarpur - Project Site Inspection & Ground Reality Tour",
+    project: "AWADH ASHIYANA MUZAFFARPUR",
+    location: "Muzaffarpur Corridor, Bihar",
+    category: "ground",
+    duration: "Site Video 5",
+    views: "Verified Footage",
+    date: "Muzaffarpur Tour",
+    thumbnail: "/images/awadh.png",
+    videoSrc: "/videos/amit wadh.mp4",
+    videoEmbedUrl: "/videos/amit wadh.mp4",
+    description: "Exclusive on-site ground inspection and development walkthrough of Awadh Ashiyana in Muzaffarpur. Check plot boundaries, wide road access, and clear registry status.",
+    highlights: ["Wide Internal Roads", "Instant Plot Demarcation", "Muzaffarpur Prime Corridor", "11 Months Easy EMI"]
   },
   {
     id: "vid-5",

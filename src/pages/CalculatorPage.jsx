@@ -97,7 +97,7 @@ export default function CalculatorPage({ openInquiryModal, setActivePage }) {
             Plot Price & EMI Calculator
           </h1>
           <p style={{ color: '#475569', fontSize: '0.96rem', marginTop: '6px', maxWidth: '750px', lineHeight: 1.6 }}>
-            Calculate accurate plot pricing, down payment requirements, and monthly installments across all 19 Delcon Homes projects in Patna, Ranchi, and Giriyak.
+            Calculate accurate plot pricing, down payment requirements, and monthly installments across all 19 Delcon Homes projects in Patna, Ranchi, and Rajgir.
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeroSlider from '../components/HeroSlider';
 import { 
   Building2, 
@@ -19,14 +19,19 @@ import {
   Sparkles,
   Percent,
   Compass,
-  Star
+  Star,
+  Download,
+  ZoomIn,
+  Navigation
 } from 'lucide-react';
 import { PROJECTS_DATA, COMMERCIAL_RATE, CONTACT_INFO } from '../data/projectsData';
 import { VIDEOS_DATA } from '../data/videosData';
+import HillsCourtModal from '../components/HillsCourtModal';
 
 export default function HomePage({ setActivePage, openInquiryModal, openRateChartModal, setSelectedVideo }) {
+  const [hillsCourtModalOpen, setHillsCourtModalOpen] = useState(false);
   const featuredProjects = PROJECTS_DATA.filter(p => p.featured).slice(0, 6);
-  const homeVideos = VIDEOS_DATA.slice(0, 4);
+  const homeVideos = VIDEOS_DATA.filter(v => v.videoSrc);
 
   return (
     <div style={{ background: '#F8FAFC' }}>
@@ -266,6 +271,71 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
                     </div>
                   </div>
 
+                  {/* Master Plan Button for Hills Court */}
+                  {project.hasMasterPlan && (
+                    <button
+                      onClick={() => setHillsCourtModalOpen(true)}
+                      style={{
+                        width: '100%',
+                        marginBottom: '10px',
+                        padding: '9px 12px',
+                        borderRadius: '8px',
+                        background: 'linear-gradient(135deg, #0F2848 0%, #1A365D 100%)',
+                        color: '#F1A80A',
+                        border: '1.5px solid #F1A80A',
+                        fontWeight: 800,
+                        fontSize: '0.82rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Compass size={15} /> 🗺️ View Layout Map (246 Plots) & 11 Locations
+                    </button>
+                  )}
+
+                  {/* Video Walkthrough Button for Awadh Ashiyana */}
+                  {project.hasVideo && (
+                    <button
+                      onClick={() => {
+                        if (setSelectedVideo) {
+                          setSelectedVideo({
+                            id: `vid-${project.id}`,
+                            title: project.videoTitle || `${project.name} Site Inspection`,
+                            project: project.name,
+                            location: project.location,
+                            videoSrc: project.videoSrc,
+                            videoEmbedUrl: project.videoSrc,
+                            thumbnail: project.image,
+                            duration: "Site Video",
+                            views: "Verified Footage",
+                            description: project.description
+                          });
+                        }
+                      }}
+                      style={{
+                        width: '100%',
+                        marginBottom: '10px',
+                        padding: '9px 12px',
+                        borderRadius: '8px',
+                        background: 'linear-gradient(135deg, #DC2626 0%, #991B1B 100%)',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        fontWeight: 800,
+                        fontSize: '0.82rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Play size={15} fill="#FFFFFF" /> ▶️ Watch On-Site Video Tour
+                    </button>
+                  )}
+
                   {/* Action Buttons */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     <button
@@ -288,6 +358,203 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4.5. SPOTLIGHT: HILLS COURT RANCHI MASTER PLAN & 11 NEAREST LOCATIONS */}
+      <section style={{
+        background: 'linear-gradient(135deg, #0B192C 0%, #0F2848 50%, #16365C 100%)',
+        color: '#FFFFFF',
+        padding: '64px 0',
+        borderTop: '3px solid #F1A80A',
+        borderBottom: '3px solid #F1A80A',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(241,168,10,0.12) 0%, transparent 60%)',
+          pointerEvents: 'none'
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '36px',
+            alignItems: 'center'
+          }}>
+            {/* Left Content Column */}
+            <div>
+              <span className="badge-gold" style={{ marginBottom: '12px', display: 'inline-block' }}>
+                <Compass size={13} style={{ display: 'inline', marginRight: '5px' }} />
+                Official Master Layout Plan & Prime Connectivity
+              </span>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.25, marginBottom: '12px' }}>
+                Hills Court (Ranchi, Jharkhand)
+                <span style={{ display: 'block', color: '#F1A80A', fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)', marginTop: '4px' }}>
+                  246 Plots Master Layout & Scenic Nature Living
+                </span>
+              </h2>
+              <p style={{ color: '#CBD5E1', fontSize: '1rem', lineHeight: 1.6, marginBottom: '22px' }}>
+                Nestled amidst tranquil mountain air and picturesque hill views, Hills Court is a fully demarcated gated layout featuring 20ft, 25ft & 30ft wide internal boulevards, company farm house, cycle track, and fountain park with direct Government Road connectivity.
+              </p>
+
+              {/* Layout Stats Badges */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '10px',
+                marginBottom: '24px'
+              }}>
+                <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '10px', padding: '12px', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <div style={{ fontSize: '0.74rem', color: '#F1A80A', fontWeight: 800 }}>DEMARCATED PLOTS</div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#FFFFFF' }}>246 Plots</div>
+                </div>
+                <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '10px', padding: '12px', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <div style={{ fontSize: '0.74rem', color: '#F1A80A', fontWeight: 800 }}>TOTAL LAND AREA</div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#FFFFFF' }}>6.0 Lakh SQ.FT</div>
+                </div>
+                <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '10px', padding: '12px', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <div style={{ fontSize: '0.74rem', color: '#F1A80A', fontWeight: 800 }}>STARTING PRICE</div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#34D399' }}>₹1,499 /sq.ft</div>
+                </div>
+              </div>
+
+              {/* 11 Nearest Locations Highlight */}
+              <div style={{
+                background: 'rgba(11,25,44,0.7)',
+                borderRadius: '14px',
+                padding: '16px',
+                border: '1px solid rgba(241,168,10,0.3)',
+                marginBottom: '26px'
+              }}>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#F1A80A', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <MapPin size={15} /> 11 Nearest Key Locations & Distance from Plot:
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {[
+                    { name: "DAV School", dist: "3 km" },
+                    { name: "Ring Road", dist: "4 km" },
+                    { name: "Pithouriya Bazar", dist: "4 km" },
+                    { name: "Birsa Agri College", dist: "5 km" },
+                    { name: "Veterinary College", dist: "5 km" },
+                    { name: "Medanta Hospital", dist: "7 km" },
+                    { name: "RIMS Hospital", dist: "8 km" },
+                    { name: "Patratu Dam", dist: "10 km" },
+                    { name: "Kanke Mentor Hosp", dist: "10 km" },
+                    { name: "Sant Xavier School", dist: "15 km" },
+                    { name: "Ranchi Junction", dist: "22 km" }
+                  ].map((loc, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        background: 'rgba(255,255,255,0.1)',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        color: '#FFFFFF',
+                        fontSize: '0.78rem',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        fontWeight: 600
+                      }}
+                    >
+                      {loc.name}: <strong style={{ color: '#F1A80A' }}>{loc.dist}</strong>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Action Buttons */}
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => setHillsCourtModalOpen(true)}
+                  className="btn-primary-gold"
+                  style={{ padding: '12px 24px', fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                >
+                  <Compass size={18} /> Open Interactive Master Plan
+                </button>
+                <a
+                  href="/hills_court_master_plan.pdf"
+                  download="Hills_Court_Ranchi_Master_Plan.pdf"
+                  style={{
+                    padding: '12px 20px',
+                    borderRadius: '10px',
+                    background: 'rgba(255,255,255,0.12)',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    color: '#FFFFFF',
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s'
+                  }}
+                >
+                  <Download size={16} /> Download PDF Map
+                </a>
+              </div>
+            </div>
+
+            {/* Right Preview Column: High-Res Map Card */}
+            <div
+              onClick={() => setHillsCourtModalOpen(true)}
+              style={{
+                position: 'relative',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                border: '2px solid #F1A80A',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                cursor: 'pointer',
+                background: '#0B192C',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 25px 60px rgba(241,168,10,0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.5)';
+              }}
+            >
+              <img
+                src="/images/hills_court_master_plan.png"
+                alt="Hills Court Ranchi Layout Map"
+                style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '480px', objectFit: 'contain' }}
+              />
+              <div style={{
+                position: 'absolute', bottom: 0, left: 0, right: 0,
+                background: 'linear-gradient(0deg, rgba(11,25,44,0.95) 0%, rgba(11,25,44,0.6) 70%, transparent 100%)',
+                padding: '20px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+              }}>
+                <div>
+                  <div style={{ color: '#F1A80A', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase' }}>
+                    CLICK TO ZOOM & INSPECT
+                  </div>
+                  <div style={{ color: '#FFFFFF', fontWeight: 900, fontSize: '1.05rem' }}>
+                    Official Master Layout Plan (246 Plots)
+                  </div>
+                </div>
+                <div style={{
+                  background: '#F1A80A',
+                  color: '#0B192C',
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 4px 14px rgba(241,168,10,0.6)'
+                }}>
+                  <ZoomIn size={20} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -530,7 +797,7 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
                   gap: '6px'
                 }}
               >
-                View all 19 projects including Giriyak, Ranchi, Kausar City & Commercial Plots <ArrowRight size={16} />
+                View all 19 projects including Rajgir, Ranchi, Kausar City & Commercial Plots <ArrowRight size={16} />
               </button>
             </div>
           </div>
@@ -666,6 +933,13 @@ export default function HomePage({ setActivePage, openInquiryModal, openRateChar
           </div>
         </div>
       </section>
+
+      {/* Hills Court Ranchi Master Plan & 11 Locations Modal */}
+      <HillsCourtModal
+        isOpen={hillsCourtModalOpen}
+        onClose={() => setHillsCourtModalOpen(false)}
+        openInquiryModal={openInquiryModal}
+      />
     </div>
   );
 }

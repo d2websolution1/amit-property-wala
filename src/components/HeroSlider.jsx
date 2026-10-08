@@ -39,8 +39,8 @@ const SLIDES = [
     id: 3,
     image: '/images/farmhouse_hero.jpg',
     tag: 'Scenic Weekend Retreats & Hill View',
-    title: 'Scenic Weekend Villa & Farmhouse Plots at Giriyak & Hills Court Ranchi',
-    subtitle: 'Surround yourself with nature, lush greenery, and mountain views at Giriyak starting @ only ₹799/sq.ft and Hills Court Ranchi.',
+    title: 'Scenic Weekend Villa & Farmhouse Plots at Rajgir & Hills Court Ranchi',
+    subtitle: 'Surround yourself with nature, lush greenery, and mountain views at Rajgir starting @ only ₹799/sq.ft and Hills Court Ranchi.',
     highlight: 'Special 11 to 18 Months Easy Installment Plan',
     ctaPrimary: 'Explore Farmhouses',
     ctaAction: 'plots'
@@ -125,15 +125,15 @@ export default function HeroSlider({ setActivePage, openInquiryModal, openRateCh
       </div>
 
       {/* Main Slide Content Over Carousel */}
-      <div 
-        className="hero-slider-content-container container" 
-        style={{ 
-          position: 'relative', 
-          zIndex: 10, 
-          minHeight: '680px', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          justifyContent: 'center', 
+      <div
+        className="hero-slider-content-container container"
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          minHeight: '680px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
           paddingTop: 'calc(var(--site-header-height, 128px) + 36px)',
           paddingBottom: '60px',
           paddingLeft: '24px',

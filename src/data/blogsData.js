@@ -166,10 +166,10 @@ export const BLOGS_DATA = [
   },
   {
     id: 5,
-    slug: 'farmhouse-villas-giriyak-hills-court-ranchi',
-    title: 'Scenic Weekend Farmhouse Plots: Giriyak & Hills Court Ranchi Luxury Living',
-    titleHindi: 'शानदार फार्महाउस और हिल व्यू प्लॉट्स: गिरियक एवं हिल्स कोर्ट रांची में निवेश',
-    excerpt: 'Escape city pollution. Discover how affordable luxury weekend villa plots at Giriyak (starting @ ₹799/sqft) and Ranchi Hills Court provide tranquil nature living with supreme appreciation.',
+    slug: 'farmhouse-villas-rajgir-hills-court-ranchi',
+    title: 'Scenic Weekend Farmhouse Plots: Rajgir & Hills Court Ranchi Luxury Living',
+    titleHindi: 'शानदार फार्महाउस और हिल व्यू प्लॉट्स: राजगीर एवं हिल्स कोर्ट रांची में निवेश',
+    excerpt: 'Escape city pollution. Discover how affordable luxury weekend villa plots at Rajgir (starting @ ₹799/sqft) and Ranchi Hills Court provide tranquil nature living with supreme appreciation.',
     category: 'investment',
     readTime: '5 min read',
     date: 'December 2024',
@@ -177,16 +177,16 @@ export const BLOGS_DATA = [
     authorRole: 'Founder & Real Estate Advisor',
     badge: 'Nature & Luxury',
     image: '/images/farmhouse_hero.jpg',
-    summary: 'Modern investors desire more than just a concrete apartment. Farmhouse plots at Giriyak (near Rajgir & Nalanda tourism circuit) and Hills Court Ranchi combine weekend retreat living, clean mountain air, and strong tourism-driven land value growth.',
+    summary: 'Modern investors desire more than just a concrete apartment. Farmhouse plots at Rajgir (near Nalanda tourism circuit) and Hills Court Ranchi combine weekend retreat living, clean mountain air, and strong tourism-driven land value growth.',
     keyTakeaways: [
-      'Giriyak Farmhouse plots available at just ₹799/sq.ft (One-Time) & ₹899/sq.ft (EMI).',
+      'Rajgir Farmhouse plots available at just ₹799/sq.ft (One-Time) & ₹899/sq.ft (EMI).',
       'Hills Court Ranchi offers scenic mountain views and cool climate retreats @ ₹1,499/sq.ft.',
       'Proximity to upcoming expressways and Rajgir tourist corridors assures high liquidity.'
     ],
     sections: [
       {
         heading: '1. The Rise of Eco-Living & Weekend Homes',
-        content: 'Post-pandemic, demand for open green acreage with fruit orchards, private cottages, and weekend family getaways has exploded. Giriyak provides the perfect gateway close to Rajgir hills and Nalanda heritage sites.'
+        content: 'Post-pandemic, demand for open green acreage with fruit orchards, private cottages, and weekend family getaways has exploded. Rajgir provides the perfect gateway close to scenic hills and Nalanda heritage sites.'
       }
     ],
     faq: [

@@ -1,11 +1,28 @@
 import React, { useState } from 'react';
-import { X, Camera, MapPin, MessageSquare, ZoomIn, Play, Video } from 'lucide-react';
+import { X, Camera, MapPin, MessageSquare, ZoomIn, Play, Video, Download } from 'lucide-react';
 import { CONTACT_INFO } from '../data/projectsData';
 import { VIDEOS_DATA } from '../data/videosData';
 
 const GALLERY_IMAGES = [
   {
     id: 1,
+    src: '/images/hills_court_master_plan.png',
+    title: 'Hills Court Ranchi - Official Master Layout Map (246 Plots)',
+    location: 'Ranchi, Jharkhand (Near Ring Road & Patratu Dam)',
+    category: 'farmhouse',
+    badge: 'Master Map (246 Plots)',
+    isMap: true
+  },
+  {
+    id: 2,
+    src: '/images/awadh.png',
+    title: 'Awadh Ashiyana Muzaffarpur',
+    location: 'Muzaffarpur Corridor, Bihar',
+    category: 'township',
+    badge: 'Verified Project'
+  },
+  {
+    id: 3,
     src: '/images/township_hero.jpg',
     title: 'Delcon City Township',
     location: 'Patna - Bihta Ring Road',
@@ -13,7 +30,7 @@ const GALLERY_IMAGES = [
     badge: 'Featured'
   },
   {
-    id: 2,
+    id: 4,
     src: '/images/commercial_hero.jpg',
     title: 'Commercial Plot Zone',
     location: 'Prime Road-Facing Location',
@@ -21,15 +38,15 @@ const GALLERY_IMAGES = [
     badge: 'Hot'
   },
   {
-    id: 3,
+    id: 5,
     src: '/images/farmhouse_hero.jpg',
     title: 'Farmhouse & Nature Retreat',
-    location: 'Giriyak, Nalanda',
+    location: 'Rajgir, Nalanda',
     category: 'farmhouse',
     badge: 'Scenic'
   },
   {
-    id: 4,
+    id: 6,
     src: '/images/township_hero.jpg',
     title: 'Hi-Tech Town Project',
     location: 'Patna Expressway Corridor',
@@ -37,7 +54,7 @@ const GALLERY_IMAGES = [
     badge: 'Premium'
   },
   {
-    id: 5,
+    id: 7,
     src: '/images/commercial_hero.jpg',
     title: 'Hills Court Ranchi',
     location: 'Ranchi Hill View',
@@ -45,7 +62,7 @@ const GALLERY_IMAGES = [
     badge: 'Hill View'
   },
   {
-    id: 6,
+    id: 8,
     src: '/images/farmhouse_hero.jpg',
     title: 'East Park Residential',
     location: 'Patna East Growth Corridor',
@@ -53,7 +70,7 @@ const GALLERY_IMAGES = [
     badge: 'Affordable'
   },
   {
-    id: 7,
+    id: 9,
     src: '/images/township_hero.jpg',
     title: 'Green Valley Township',
     location: 'Bihta Expressway',
@@ -61,7 +78,7 @@ const GALLERY_IMAGES = [
     badge: 'Eco'
   },
   {
-    id: 8,
+    id: 10,
     src: '/images/commercial_hero.jpg',
     title: 'Commercial Hub Plaza',
     location: 'Delcon City Main Road',
@@ -69,10 +86,10 @@ const GALLERY_IMAGES = [
     badge: 'New'
   },
   {
-    id: 9,
+    id: 11,
     src: '/images/farmhouse_hero.jpg',
-    title: 'Giriyak Valley View',
-    location: 'Giriyak, Bihar',
+    title: 'Rajgir Valley View',
+    location: 'Rajgir, Bihar',
     category: 'farmhouse',
     badge: 'Budget'
   }
@@ -90,7 +107,7 @@ export default function GalleryPage({ openInquiryModal, setActivePage, setSelect
   const [lightboxImg, setLightboxImg] = useState(null);
   const [localVideo, setLocalVideo] = useState(null);
 
-  const realVideos = VIDEOS_DATA.slice(0, 4);
+  const realVideos = VIDEOS_DATA.filter((v) => v.videoSrc);
 
   const filtered = selectedCategory === 'all'
     ? GALLERY_IMAGES
@@ -142,7 +159,7 @@ export default function GalleryPage({ openInquiryModal, setActivePage, setSelect
                 <Video size={13} /> Official On-Site Video Footage
               </div>
               <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: '#0F2848', fontWeight: 900 }}>
-                Live Project Videos & Walkthroughs (4 Videos)
+                Live Project Videos & Walkthroughs ({realVideos.length} Videos)
               </h2>
               <p style={{ color: '#64748B', fontSize: '0.92rem', marginTop: '4px' }}>
                 Click any video below to watch actual road construction, plot demarcation, and site reality.
@@ -414,12 +431,24 @@ export default function GalleryPage({ openInquiryModal, setActivePage, setSelect
                   <MapPin size={12} color="#F1A80A" /> {lightboxImg.location}
                 </div>
               </div>
-              <button
-                onClick={() => setLightboxImg(null)}
-                style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF' }}
-              >
-                <X size={18} />
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                {lightboxImg.isMap && (
+                  <a
+                    href="/hills_court_master_plan.pdf"
+                    download="Hills_Court_Ranchi_Master_Plan.pdf"
+                    className="btn-primary-gold"
+                    style={{ padding: '6px 14px', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                  >
+                    <Download size={14} /> Download PDF
+                  </a>
+                )}
+                <button
+                  onClick={() => setLightboxImg(null)}
+                  style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', cursor: 'pointer' }}
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

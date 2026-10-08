@@ -81,6 +81,7 @@ export default function App() {
             openInquiryModal={openInquiryModal}
             openRateChartModal={openRateChartModal}
             setActivePage={setActivePage}
+            setSelectedVideo={handleVideoSelect}
           />
         )}
 
